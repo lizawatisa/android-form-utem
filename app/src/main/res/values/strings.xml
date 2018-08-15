@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">MyForm</string>
+    <string-array name="occupations">
+        <item>I.T</item>
+        <item>Admin</item>
+        <item>Marketing</item>
+        <item>Sales</item>
+        <item>Procurement</item>
+    </string-array>
+
+    <string-array name="states">
+        <item>Selangor</item>
+        <item>Melaka</item>
+        <item>Negeri Sembilan</item>
+        <item>Johor</item>
+        <item>Sabah</item>
+        <item>Sarawak</item>
+        <item>Kedah</item>
+        <item>Kelantan</item>
+        <item>Wilayah Persekutuan</item>
+        <item>Pulau Pinang</item>
+        <item>Terengganu</item>
+        <item>Perak</item>
+        <item>Perlis</item>
+    </string-array>
 </resources>

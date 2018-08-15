@@ -2,29 +2,54 @@ package my.edu.utem.myform;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText nameEditText, emailEditText, phoneEditText, cellEditText, messageEditText;
+    Spinner spinner;
+    AutoCompleteTextView statesAutoCompleteTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         nameEditText = findViewById(R.id.main_nameEditText);
         emailEditText = findViewById(R.id.main_emailEditText);
         phoneEditText = findViewById(R.id.main_phoneEditText);
         cellEditText = findViewById(R.id.main_cellEditText);
         messageEditText = findViewById(R.id.main_messageEditText);
+
+        spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.occupations, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        statesAutoCompleteTextView = findViewById(R.id.statesAutoCompleteTextView);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(MainActivity.this, R.array.states, android.R.layout.simple_list_item_1);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statesAutoCompleteTextView.setAdapter(adapter2);
     }
 
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
+    //menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -81,7 +106,10 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("phone", phoneEditText.getText().toString());
         intent.putExtra("cell", cellEditText.getText().toString());
         intent.putExtra("message", messageEditText.getText().toString());
-
+        String selectedState = statesAutoCompleteTextView.getText().toString();
+        String selectedOccupation = (String) (spinner.getSelectedItem());
+        Log.d("debug","Selected State is "+selectedState);
+        Log.d("debug", "Selected occupation is "+selectedOccupation);
         startActivity(intent);
     }
 }
